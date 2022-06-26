@@ -1,44 +1,53 @@
 <template>
   <v-app-bar :clipped-left="clipped" fixed app>
-    <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
     <v-spacer />
-    <v-btn icon>
-      <v-icon>mdi-cards </v-icon>
-    </v-btn>
-    <v-btn icon>
-      <v-icon>mdi-clipboard-text-clock </v-icon>
-    </v-btn>
-    <v-btn icon>
-      <v-icon>mdi-account</v-icon>
-    </v-btn>
+    <span v-if="loggedIn">
+      <v-btn icon to="/game/config">
+        <v-icon>mdi-cards </v-icon>
+      </v-btn>
+      <v-btn icon>
+        <v-icon>mdi-clipboard-text-clock </v-icon>
+      </v-btn>
+      <v-btn icon to="/user/profile">
+        <v-icon>mdi-account</v-icon>
+      </v-btn>
+      <v-btn icon @click="logout">
+        <v-icon>mdi-logout</v-icon>
+      </v-btn>
+    </span>
+    <span v-else> </span>
   </v-app-bar>
 </template>
 
 <script>
+import { mapState, mapActions } from "vuex";
 export default {
   name: "DefaultLayout",
   data() {
     return {
       clipped: false,
-      drawer: false,
-      fixed: false,
-      items: [
-        {
-          icon: "mdi-apps",
-          title: "Welcome",
-          to: "/",
-        },
-        {
-          icon: "mdi-chart-bubble",
-          title: "Inspire",
-          to: "/inspire",
-        },
-      ],
-      miniVariant: false,
-      right: true,
-      rightDrawer: false,
-      title: "Vuetify.js",
     };
+  },
+  computed: {
+    ...mapState("user", {
+      loggedIn: (state) => state.loggedIn,
+    }),
+  },
+  methods: {
+    ...mapActions("user", ["getCurrentUser", "logoutUser"]),
+    logout() {
+      this.logoutUser()
+    }
+  },
+  watch: {
+    loggedIn(n) {
+      if (!n) {
+        this.$router.push({ path: '/'})
+      }
+    }
+  },
+  mounted() {
+    this.getCurrentUser();
   },
 };
 </script>

@@ -1,4 +1,4 @@
-# marvel_game
+# memory_game_nuxt
 
 ## Build Setup
 

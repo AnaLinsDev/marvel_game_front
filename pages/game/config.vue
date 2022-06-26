@@ -1,13 +1,9 @@
 <template>
-  <h1>Profile</h1>
+  <h1>PAGE CONFIG</h1>
 </template>
 
 <script>
 export default {
-
+  name: 'ConfigPage'
 }
 </script>
-
-<style>
-
-</style>
