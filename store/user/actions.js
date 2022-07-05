@@ -24,7 +24,7 @@ export default {
           commit("login", true);
       });
     } else {
-      throw Error('Name must be unique')
+      throw Error('Name already exists !')
     }
   },
 

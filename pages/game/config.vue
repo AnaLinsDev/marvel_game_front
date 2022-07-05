@@ -1,5 +1,5 @@
 <template>
-  <v-card max-width="500px" elevation="10px" rounded class="card-config pa-10">
+  <v-card max-width="500px" elevation="16px" rounded class="card-config pa-10">
     <h1 class="mb-4">
       <span>Difficulty</span>
       <v-icon :color="iconColor" large>mdi-star</v-icon>
