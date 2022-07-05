@@ -43,7 +43,7 @@ export default {
   watch: {
     loggedIn(n) {
       if (n) {
-        this.$router.push({ path: 'user/profile'})
+        this.$router.push({ path: 'game/config'})
       }
     }
   },

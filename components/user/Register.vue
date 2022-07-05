@@ -53,19 +53,20 @@
 
 <script>
 import MixinRules from "@/mixins/MixinRules.vue";
-import { mapActions } from "vuex";
+import { mapState, mapActions, mapMutations } from "vuex";
 export default {
   mixins: [MixinRules],
   data: () => ({
     valid: true,
     showPass: false,
     showPassConfirm: false,
-    name: "",
-    email: "",
-    password: "",
-    passwordConfirm: "",
+    name: "ana",
+    email: "ana@gmail.com",
+    password: "123123",
+    passwordConfirm: "123123",
   }),
   methods: {
+    ...mapMutations("alert", ["openAlert", "closeAlert"]),
     ...mapActions("user", ["registerUser"]),
     async register() {
       let user = {
@@ -73,10 +74,15 @@ export default {
         email: this.email,
         password: this.password,
       };
-      await this.registerUser(user);
-    }
+      await this.registerUser(user)
+        .then(() => this.closeAlert())
+        .catch((err) =>
+          this.openAlert({ message: err.message, type: this.types.ERROR })
+        );
+    },
   },
   computed: {
+    ...mapState("alert", ["types"]),
     repeatPassErrorMessage() {
       return this.password === this.passwordConfirm
         ? ""

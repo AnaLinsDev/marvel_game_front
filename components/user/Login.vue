@@ -36,7 +36,7 @@
 
 <script>
 import MixinRules from "@/mixins/MixinRules.vue";
-import { mapActions } from "vuex";
+import { mapState, mapActions, mapMutations } from "vuex";
 export default {
   mixins: [MixinRules],
   data: () => ({
@@ -46,14 +46,22 @@ export default {
     password: "123123",
   }),
   methods: {
+    ...mapMutations("alert", ["openAlert", "closeAlert"]),
     ...mapActions("user", ["loginUser"]),
     async login() {
       let user = {
         username: this.name,
         password: this.password,
       };
-      await this.loginUser(user).then((resp) => console.log(resp));
+      await this.loginUser(user)
+        .then(() => this.closeAlert())
+        .catch((err) =>
+          this.openAlert({ message: err.message, type: this.types.ERROR })
+        );
     },
+  },
+  computed: {
+    ...mapState("alert", ["types"]),
   },
 };
 </script>

@@ -24,7 +24,7 @@ export default {
           commit("login", true);
       });
     } else {
-      // TODO: Alert error username already exists
+      throw Error('Name must be unique')
     }
   },
 
@@ -42,8 +42,7 @@ export default {
       localStorage.setItem("auth", JSON.stringify(findedUser));
       commit("login", true);
     } else {
-      // TODO: Alert error user not found
-    }
+      throw Error('User not found !')    }
   },
 
   logoutUser({ commit }) {
