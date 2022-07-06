@@ -1,6 +1,12 @@
 <template>
-  <v-card max-width="500px" elevation="16px" rounded class="card-config pa-10">
-    <h1 class="mb-4">
+  <v-card
+    max-width="500px"
+    elevation="16px"
+    rounded
+    class="card-config pa-10"
+    light
+  >
+    <h1 class="mb-4 title-config">
       <span>Difficulty</span>
       <v-icon :color="iconColor" large>mdi-star</v-icon>
       <v-icon
@@ -39,10 +45,12 @@ export default {
   },
   methods: {
     ...mapActions("game", ["getGame"]),
-    
+
     getGameByDifficulty() {
-      this.getGame(this.countCards).then(() => this.$router.push({ path: '/game/play'}))
-    }
+      this.getGame(this.selected).then(() =>
+        this.$router.push({ path: "/game/play" })
+      );
+    },
   },
   computed: {
     iconColor() {
@@ -55,16 +63,6 @@ export default {
           return "red";
       }
     },
-    countCards() {
-      switch (this.selected) {
-        case "Easy":
-          return 4;
-        case "Normal":
-          return 8;
-        case "Hard":
-          return 10;
-      }
-    },
   },
 };
 </script>
@@ -72,5 +70,13 @@ export default {
 <style scoped>
 .card-config {
   margin: 10vh auto;
+}
+@media only screen and (max-width: 400px) {
+  .card-config {
+    padding: auto !important;
+  }
+  .title-config {
+    font-size: 20px !important;
+  }
 }
 </style>

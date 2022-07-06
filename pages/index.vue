@@ -1,5 +1,6 @@
 <template>
   <v-card
+    light
     max-width="500px"
     elevation="10px"
     rounded
@@ -10,7 +11,7 @@
       <a @click="toRegister">Don't have an account yet ?? Go to Register</a>
     </span>
     <span v-else>
-      <Register/>
+      <Register />
       <a @click="toLogin">Already have an account ?? Go to Login</a>
     </span>
   </v-card>
@@ -33,8 +34,8 @@ export default {
     };
   },
   computed: {
-    ...mapState('user', {
-      loggedIn: state => state.loggedIn
+    ...mapState("user", {
+      loggedIn: (state) => state.loggedIn,
     }),
     isLogin() {
       return this.current_page === this.page_type.LOGIN;
@@ -43,12 +44,12 @@ export default {
   watch: {
     loggedIn(n) {
       if (n) {
-        this.$router.push({ path: 'game/config'})
+        this.$router.push({ path: "game/config" });
       }
-    }
+    },
   },
   mounted() {
-    this.getCurrentUser()
+    this.getCurrentUser();
   },
   methods: {
     ...mapActions("user", ["getCurrentUser"]),

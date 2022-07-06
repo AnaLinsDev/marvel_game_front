@@ -12,7 +12,7 @@ export default {
   },
 
   getUserById({ commit }, id) {
-    return this.$axios.$get(`/users/${id}`)
+    return this.$axios.$get(`/users/${id}`);
   },
 
   async registerUser({ commit }, newUser) {
@@ -24,7 +24,7 @@ export default {
           commit("login", true);
       });
     } else {
-      throw Error('Name already exists !')
+      throw Error("Name already exists !");
     }
   },
 
@@ -42,7 +42,8 @@ export default {
       localStorage.setItem("auth", JSON.stringify(findedUser));
       commit("login", true);
     } else {
-      throw Error('User not found !')    }
+      throw Error("User not found !");
+    }
   },
 
   logoutUser({ commit }) {

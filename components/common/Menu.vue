@@ -5,9 +5,6 @@
       <v-btn icon to="/game/config">
         <v-icon>mdi-cards </v-icon>
       </v-btn>
-      <v-btn icon>
-        <v-icon>mdi-clipboard-text-clock </v-icon>
-      </v-btn>
       <v-btn icon to="/user/profile">
         <v-icon>mdi-account</v-icon>
       </v-btn>
@@ -36,15 +33,15 @@ export default {
   methods: {
     ...mapActions("user", ["getCurrentUser", "logoutUser"]),
     logout() {
-      this.logoutUser()
-    }
+      this.logoutUser();
+    },
   },
   watch: {
     loggedIn(n) {
       if (!n) {
-        this.$router.push({ path: '/'})
+        this.$router.push({ path: "/" });
       }
-    }
+    },
   },
   mounted() {
     this.getCurrentUser();
