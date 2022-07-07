@@ -102,7 +102,7 @@ export default {
       "getUserById",
     ]),
     ...mapActions("game", ["getGamesByUser"]),
-    ...mapMutations("alert", ["openAlert", "closeAlert"]),
+    ...mapMutations("alert", ["openAlert"]),
 
     setTypeProfile() {
       this.isEdit = !this.isEdit;
@@ -136,13 +136,14 @@ export default {
       this.deleteUser(this.user.id);
     },
 
+    // here is just getting the current user
     updateCurrentUser() {
       this.getCurrentUser().then((resp) => {
         this.user.id = resp.id || resp[0].id;
         this.user.password = resp.password || resp[0].password;
         this.user.username = resp.username || resp[0].username;
         this.user.email = resp.email || resp[0].email;
-      });
+      }).catch(() => {});
     },
   },
   async mounted() {

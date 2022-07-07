@@ -14,7 +14,7 @@
       v-for="(game, key) in userGames"
       class="pa-8 my-6 mx-10"
       :key="key"
-      :color="game.isWinner ? 'green' : 'red'"
+      :color="game.isWinner ? '#0ee86c' : '#ed6464'"
     >
       <v-row>
         <h2 v-if="game.isWinner">Won</h2>
@@ -33,7 +33,7 @@
       <v-card
         max-width="500px"
         class="pa-8 pt-6"
-        :color="gameDialog.isWinner ? 'green' : 'red'"
+        :color="gameDialog.isWinner ? '#0ee86c' : '#ed6464'"
         light
       >
         <v-row>

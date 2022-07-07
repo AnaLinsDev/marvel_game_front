@@ -19,7 +19,7 @@
 <script>
 import { mapState, mapActions } from "vuex";
 export default {
-  name: "DefaultLayout",
+  name: "Menu",
   data() {
     return {
       clipped: false,

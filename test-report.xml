@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testExecutions version="1">
+  <file path="C:\Users\Ana Júlia Lins\Desktop\Linkedin\memory_game\memory_game_nuxt\test\pages\index.spec.js">
+    <testCase name="IndexPage is a Vue instance" duration="21"/>
+  </file>
+</testExecutions>

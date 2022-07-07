@@ -11,7 +11,7 @@
 
 <script>
 export default {
-  name: "DefaultLayout",
+  name: "Footer",
   data() {
     return {
       fixed: false,

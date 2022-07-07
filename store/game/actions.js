@@ -47,7 +47,7 @@ function currentDate() {
 function countCards(difficulty) {
   switch (difficulty) {
     case "Easy":
-      return 4;
+      return 6;
     case "Normal":
       return 8;
     case "Hard":

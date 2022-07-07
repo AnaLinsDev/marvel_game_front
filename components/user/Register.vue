@@ -55,6 +55,7 @@
 import MixinRules from "@/mixins/MixinRules.vue";
 import { mapState, mapActions, mapMutations } from "vuex";
 export default {
+  name: 'Register',
   mixins: [MixinRules],
   data: () => ({
     valid: true,

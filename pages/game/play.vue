@@ -9,9 +9,10 @@
   >
     <ModalLoseOrWon :dialog="dialog" :isWinner="isWinner" />
     <h1 class="text-center">Memory Game</h1>
-    <h2 class="text-center my-10">
+    <h2 class="text-center my-10 memory-attempts">
       Remaining attempts: {{ this.attempts }} / {{ this.maxAttempts }}
     </h2>
+    <v-divider class="my-6"></v-divider>
     <span class="d-flex flex-wrap">
       <v-card
         v-for="(card, key) of cardsToPlay"
@@ -79,7 +80,7 @@ export default {
     cardsToPlay() {
       var newCards = [];
       var newCard = {};
-      this.cards.forEach((card) => {
+      this.cards?.forEach((card) => {
         newCard = Object.assign({}, card);
         (newCard.id = card.id + "_match"), newCards.push(card);
         newCards.push(newCard);
@@ -92,13 +93,14 @@ export default {
   methods: {
     ...mapActions("game", ["addGameToUser"]),
     select(card) {
+      console.log(this.selected.id !== undefined)
       if (
-        (this.selected.id && this.selected.id === card.id) ||
+        (this.selected.id !== undefined && this.selected.id === card.id) ||
         this.selected_match.id
       ) {
         return;
       }
-      this.selected.id
+      this.selected.id !== undefined
         ? [(this.selected_match = card), this.match()]
         : (this.selected = card);
     },
@@ -153,7 +155,7 @@ export default {
 
     isMatched(card) {
       var isAMatch = false;
-      this.matches.forEach((id) => {
+      this.matches?.forEach((id) => {
         if (id === card.id) {
           isAMatch = true;
         }
@@ -179,7 +181,7 @@ export default {
   }
 }
 
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 715px) {
   .memory-card {
     margin: 5px !important;
     width: 80px !important;
@@ -191,18 +193,22 @@ export default {
   }
 }
 
-@media only screen and (max-width: 300px) {
+@media only screen and (max-width: 350px) {
   .memory-card {
     margin: 5px !important;
-    width: 70px !important;
-    height: 70px !important;
+    width: 60px !important;
+    height: 60px !important;
   }
   .memory-icon {
-    padding: 20px !important;
+    padding: 15px !important;
     font-size: 30px !important;
   }
   .memory-container {
     padding: 5px !important;
+    font-size: 10px !important;
+  }
+  .memory-attempts {
+    margin: 0 !important;
   }
 }
 </style>

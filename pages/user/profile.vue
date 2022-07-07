@@ -7,7 +7,7 @@
 <script>
 import Info from "@/components/user/Info.vue";
 export default {
-  name: "Profile",
+  name: "ProfilePage",
   components: { Info },
 };
 </script>
