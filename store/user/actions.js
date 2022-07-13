@@ -12,7 +12,7 @@ export default {
   },
 
   async registerUser({ commit }, newUser) {
-    this.$axios.$post("/register/", newUser).then((resp) => {
+    return this.$axios.$post("/register/", newUser).then((resp) => {
       localStorage.setItem("auth", JSON.stringify(resp)), commit("login", true);
     });
   },
