@@ -43,8 +43,8 @@ export default {
   data: () => ({
     valid: true,
     showPass: false,
-    name: "ana",
-    password: "123123",
+    name: "",
+    password: "",
   }),
   methods: {
     ...mapMutations("alert", ["openAlert", "closeAlert"]),
