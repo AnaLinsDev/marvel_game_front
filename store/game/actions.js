@@ -1,9 +1,9 @@
 export default {
   async getGame({ commit }, difficulty) {
+    await this.$axios.$post(`/povoate_cards`)
     let gameCards = [];
-    let count = countCards(difficulty);
-    await this.$axios.$get("/cards/").then((resp) => (gameCards = resp));
-    gameCards = gameCards.slice(0, count);
+    let difficultyLowerCased = difficulty.toLowerCase()
+    await this.$axios.$get(`/game/${difficultyLowerCased}`).then((resp) => (gameCards = resp));
     commit("createGame", { gameCards, difficulty });
   },
 
@@ -11,23 +11,15 @@ export default {
     var fullDate = currentDate()
     var auth = localStorage.getItem("auth");
     auth = JSON.parse(auth);
-    game.userId = auth.id;
     game.date = fullDate.date
     game.time = fullDate.time
-    return await this.$axios.$post("/games", game);
+    return await this.$axios.$post(`/games/${auth.id}`, game);
   },
 
   async getGamesByUser({ commit }) {
-    var games = [];
-    var idUser = 3;
-    await this.$axios.$get("/games/").then((resp) => (games = resp));
-    games = games.filter(isUsers);
-
-    if (games.length === 0) {
-      throw Error("History is empty, play some game first !");
-    }
-
-    return games;
+    var auth = localStorage.getItem("auth");
+    auth = JSON.parse(auth);
+    return await this.$axios.$get(`/games/${auth.id}`)
   },
 };
 

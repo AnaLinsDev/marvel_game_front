@@ -37,7 +37,7 @@ export default {
   ],
 
   axios: {
-    baseURL: 'http://localhost:8000'
+    baseURL: 'https://memory-game-express.herokuapp.com'
   },
 
   vuetify: {

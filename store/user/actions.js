@@ -1,8 +1,4 @@
 export default {
-  getAll({ commit }) {
-    this.$axios.$get("/users/").then((resp) => console.log(resp));
-  },
-
   getCurrentUser({ commit }) {
     var auth = localStorage.getItem("auth");
     if (auth) {
@@ -16,16 +12,9 @@ export default {
   },
 
   async registerUser({ commit }, newUser) {
-    let allUsers = [];
-    await this.$axios.$get("/users/").then((resp) => (allUsers = resp));
-    if (isUniqueUsername(allUsers, newUser)) {
-      this.$axios.$post("/users/", newUser).then((resp) => {
-        localStorage.setItem("auth", JSON.stringify(resp)),
-          commit("login", true);
-      });
-    } else {
-      throw Error("Name already exists !");
-    }
+    this.$axios.$post("/register/", newUser).then((resp) => {
+      localStorage.setItem("auth", JSON.stringify(resp)), commit("login", true);
+    });
   },
 
   async updateUser({ commit }, newUser) {
@@ -35,15 +24,10 @@ export default {
   },
 
   async loginUser({ commit }, user) {
-    let allUsers = [];
-    await this.$axios.$get("/users/").then((resp) => (allUsers = resp));
-    let findedUser = getUser(allUsers, user);
-    if (findedUser.length > 0) {
-      localStorage.setItem("auth", JSON.stringify(findedUser));
-      commit("login", true);
-    } else {
-      throw Error("User not found !");
-    }
+    await this.$axios.$post("/login/", user).then((resp) => {
+      localStorage.setItem("auth", JSON.stringify(resp))
+      commit("login", true)
+    })
   },
 
   logoutUser({ commit }) {
@@ -57,16 +41,3 @@ export default {
     commit("login", false);
   },
 };
-
-function isUniqueUsername(users, newUser) {
-  let findUser = users.filter((user) => user.username === newUser.username);
-  return findUser.length === 0;
-}
-
-function getUser(users, newUser) {
-  let findUser = users.filter(
-    (user) =>
-      user.username === newUser.username && user.password === newUser.password
-  );
-  return findUser;
-}

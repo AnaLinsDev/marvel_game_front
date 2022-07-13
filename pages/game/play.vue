@@ -93,7 +93,6 @@ export default {
   methods: {
     ...mapActions("game", ["addGameToUser"]),
     select(card) {
-      console.log(this.selected.id !== undefined)
       if (
         (this.selected.id !== undefined && this.selected.id === card.id) ||
         this.selected_match.id
