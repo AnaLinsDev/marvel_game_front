@@ -2,7 +2,8 @@ export default () => ({
     alert: {
         open: false,
         type: '',
-        message: ''
+        message: '',
+        code: ''
     },
     types: {
         SUCCESS: 'success',

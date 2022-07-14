@@ -23,26 +23,9 @@ export default {
   },
 };
 
-function isUsers(value) {
-  var auth = localStorage.getItem("auth");
-  auth = JSON.parse(auth);
-  return value.userId == auth.id;
-}
-
 function currentDate() {
   var fullDate = new Date()
   var date = fullDate.toLocaleDateString()
   var time = fullDate.toLocaleTimeString()
   return { date, time};
-}
-
-function countCards(difficulty) {
-  switch (difficulty) {
-    case "Easy":
-      return 6;
-    case "Normal":
-      return 8;
-    case "Hard":
-      return 10;
-  }
 }

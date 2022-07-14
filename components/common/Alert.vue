@@ -1,5 +1,4 @@
 <template>
-  <div class="alert-container">
     <v-alert
       v-if="alert.open"
       :type="alert.type"
@@ -12,7 +11,6 @@
     >
       {{ alert.message }}
     </v-alert>
-  </div>
 </template>
 
 <script>
@@ -25,19 +23,23 @@ export default {
   computed: {
     ...mapState("alert", ["alert"]),
   },
+  watch: {
+    'alert.open'(n) {
+      if (n) {
+        setTimeout(() => this.closeAlert(), 4000);
+      }
+    }
+  }
 };
 </script>
 
 <style scoped>
 .alert {
-  position: absolute;
+  position: fixed;
   text-align: center;
   left: 0;
   right: 0;
   margin: auto;
   z-index: 1;
-}
-.alert-container {
-  position: relative;
 }
 </style>

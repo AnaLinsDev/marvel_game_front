@@ -113,7 +113,15 @@ export default {
     },
 
     async confirmEdit() {
-      await this.updateUser(this.userEdit).then(() => this.updateCurrentUser());
+      await this.updateUser(this.userEdit)
+        .then(() => this.updateCurrentUser())
+        .catch((err) =>
+          this.openAlert({
+            message: err.response.data.message,
+            type: this.types.ERROR,
+            code: err.response.status,
+          })
+        );
       this.isEdit = false;
     },
 
@@ -124,7 +132,11 @@ export default {
           this.history = true;
         })
         .catch((err) => {
-          this.openAlert({ message: err.message, type: this.types.ERROR });
+          this.openAlert({
+            message: err.response.data.message,
+            type: this.types.ERROR,
+            code: err.response.status,
+          });
         });
     },
 
@@ -138,12 +150,14 @@ export default {
 
     // here is just getting the current user
     updateCurrentUser() {
-      this.getCurrentUser().then((resp) => {
-        this.user.id = resp.id || resp[0].id;
-        this.user.password = resp.password || resp[0].password;
-        this.user.username = resp.username || resp[0].username;
-        this.user.email = resp.email || resp[0].email;
-      }).catch(() => {});
+      this.getCurrentUser()
+        .then((resp) => {
+          this.user.id = resp.id || resp[0].id;
+          this.user.password = resp.password || resp[0].password;
+          this.user.username = resp.username || resp[0].username;
+          this.user.email = resp.email || resp[0].email;
+        })
+        .catch(() => {});
     },
   },
   async mounted() {

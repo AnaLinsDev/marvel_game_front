@@ -1,5 +1,7 @@
 <template>
-  <v-card
+<span>
+  <WarningPassword />
+    <v-card
     light
     max-width="500px"
     elevation="10px"
@@ -15,15 +17,18 @@
       <a @click="toLogin">Already have an account ?? Go to Login</a>
     </span>
   </v-card>
+</span>
 </template>
 
 <script>
 import Login from "@/components/user/Login.vue";
 import Register from "@/components/user/Register.vue";
+import WarningPassword from "@/components/user/WarningPassword.vue";
+
 import { mapState, mapActions } from "vuex";
 export default {
   name: "IndexPage",
-  components: { Login, Register },
+  components: { Login, Register, WarningPassword },
   data() {
     return {
       current_page: 0,
@@ -65,7 +70,7 @@ export default {
 
 <style>
 .card-user-login {
-  margin: 10vh auto;
+  margin: 2vh auto;
 }
 a {
   color: gray !important;

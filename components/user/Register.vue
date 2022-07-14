@@ -55,7 +55,7 @@
 import MixinRules from "@/mixins/MixinRules.vue";
 import { mapState, mapActions, mapMutations } from "vuex";
 export default {
-  name: 'Register',
+  name: "Register",
   mixins: [MixinRules],
   data: () => ({
     valid: true,
@@ -78,7 +78,11 @@ export default {
       await this.registerUser(user)
         .then(() => this.closeAlert())
         .catch((err) =>
-          this.openAlert({ message: err.message, type: this.types.ERROR })
+          this.openAlert({
+            message: err.response.data.message,
+            type: this.types.ERROR,
+            code: err.response.status,
+          })
         );
     },
   },

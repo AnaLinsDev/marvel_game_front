@@ -10,7 +10,7 @@
     <ModalLoseOrWon :dialog="dialog" :isWinner="isWinner" />
     <h1 class="text-center">Memory Game</h1>
     <h2 class="text-center my-10 memory-attempts">
-      Remaining attempts: {{ this.attempts }} / {{ this.maxAttempts }}
+      Remaining attempts: {{ maxAttempts - attempts }}
     </h2>
     <v-divider class="my-6"></v-divider>
     <span class="d-flex flex-wrap">
@@ -74,7 +74,7 @@ export default {
     }),
 
     maxAttempts() {
-      return this.cardsToPlay.length * 2;
+      return this.cardsToPlay.length * 1.5;
     },
 
     cardsToPlay() {

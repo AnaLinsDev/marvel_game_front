@@ -12,19 +12,19 @@ export default {
   },
 
   async registerUser({ commit }, newUser) {
-    return this.$axios.$post("/register/", newUser).then((resp) => {
+    return await this.$axios.$post("/register/", newUser).then((resp) => {
       localStorage.setItem("auth", JSON.stringify(resp)), commit("login", true);
     });
   },
 
   async updateUser({ commit }, newUser) {
-    return this.$axios.$put(`/users/${newUser.id}`, newUser).then((resp) => {
+    return await this.$axios.$put(`/users/${newUser.id}`, newUser).then((resp) => {
       localStorage.setItem("auth", JSON.stringify(resp)), commit("login", true);
     });
   },
 
   async loginUser({ commit }, user) {
-    await this.$axios.$post("/login/", user).then((resp) => {
+    return await this.$axios.$post("/login/", user).then((resp) => {
       localStorage.setItem("auth", JSON.stringify(resp))
       commit("login", true)
     })

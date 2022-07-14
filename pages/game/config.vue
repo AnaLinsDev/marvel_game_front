@@ -25,9 +25,9 @@
       :items="items"
       outlined
     ></v-select>
-    <v-row>
+    <v-row class="pb-10">
       <v-spacer></v-spacer>
-      <v-btn color="success" @click="getGameByDifficulty">Let's Play</v-btn>
+      <v-btn color="success" x-large @click="getGameByDifficulty">Let's Play</v-btn>
       <v-spacer></v-spacer>
     </v-row>
   </v-card>
