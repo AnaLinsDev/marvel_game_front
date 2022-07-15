@@ -2,6 +2,7 @@
   <v-card
     elevation="0"
     class="pa-6 overflow-y-auto"
+    id="history-card"
     max-height="calc(100vh - 200px)"
   >
     <v-row>
@@ -12,22 +13,25 @@
     </v-row>
     <v-card
       v-for="(game, key) in userGames"
-      class="pa-8 my-6 mx-10"
+      class="pa-6 my-6 mx-10"
+      id="history-card-game"
       :key="key"
       :color="game.isWinner ? '#0ee86c' : '#ed6464'"
     >
-      <v-row>
-        <h2 v-if="game.isWinner">Won</h2>
-        <h2 v-else>Lost</h2>
+      <span class="d-flex flex-wrap">
+        <span class="mx-4">
+          <h2 v-if="game.isWinner">Won</h2>
+          <h2 v-else>Lost</h2>
+        </span>
         <v-spacer></v-spacer>
-        <h2>{{ game.difficulty }}</h2>
+        <h2 class="mx-4">{{ game.difficulty }}</h2>
         <v-spacer></v-spacer>
-        <h2>
+        <h2 class="mx-4">
           <v-btn icon @click="openDialog(game)"
             ><v-icon large>mdi-dots-horizontal</v-icon></v-btn
           >
         </h2>
-      </v-row>
+      </span>
     </v-card>
     <v-dialog v-model="dialog" max-width="500px">
       <v-card
@@ -86,4 +90,16 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+@media only screen and (max-width: 500px) {
+  #history-card {
+    font-size: 13px !important;
+    padding: 10px !important;
+  }
+
+  #history-card-game {
+    margin-right: 0px !important;
+    margin-left: 0px !important;
+  }
+}
+</style>
