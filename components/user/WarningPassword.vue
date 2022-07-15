@@ -3,7 +3,7 @@
     <span>
       <h2>Do not use any personal password !!!</h2>
       <h3>That site was made only to practice some web development tools.</h3>
-      <h3>Use passwords like "133456" or "abcdefg"</h3>
+      <h3>Use passwords like "123456" or "abcdefg"</h3>
     </span>
     <v-divider class="black my-5"></v-divider>
     <span>
@@ -12,7 +12,7 @@
         Esse site foi feito apenas para praticar algumas ferramentas de
         desenvolvimento.
       </h3>
-      <h3>Use senhas como "133456" ou "abcdefg"</h3>
+      <h3>Use senhas como "123456" ou "abcdefg"</h3>
     </span>
   </v-card>
 </template>

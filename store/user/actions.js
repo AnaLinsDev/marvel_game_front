@@ -7,6 +7,14 @@ export default {
     return JSON.parse(auth);
   },
 
+  getAllUsers({ commit }, id) {
+    return this.$axios.$get(`/users/`);
+  },
+
+  getRank({ commit }) {
+    return this.$axios.$get(`/user/rank`);
+  },
+
   getUserById({ commit }, id) {
     return this.$axios.$get(`/users/${id}`);
   },

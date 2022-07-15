@@ -6,8 +6,8 @@ export default {
   target: 'static',
 
   head: {
-    titleTemplate: '%s - memory_game_nuxt',
-    title: 'memory_game_nuxt',
+    titleTemplate: '%s',
+    title: 'Memory Game',
     htmlAttrs: {
       lang: 'en'
     },
@@ -17,11 +17,18 @@ export default {
       { hid: 'description', name: 'description', content: '' },
       { name: 'format-detection', content: 'telephone=no' }
     ],
+    link: [
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.png' }
+    ]
   },
 
   css: [],
 
   plugins: [],
+
+  router: {
+    middleware: ['auth']
+  },
 
   components: true,
 
